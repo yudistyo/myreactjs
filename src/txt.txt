@@ -1,0 +1,28 @@
+yarn add antd
+yarn add react-app-rewired customize-cra
+
+/* package.json */
+"scripts": {
+-   "start": "react-scripts start",
++   "start": "react-app-rewired start",
+-   "build": "react-scripts build",
++   "build": "react-app-rewired build",
+-   "test": "react-scripts test",
++   "test": "react-app-rewired test",
+}
+
+yarn add babel-plugin-import
+
+make file config-overrides.js
+
+isinya
+const { override, fixBabelImports } = require('customize-cra');
+ module.exports = override(
+   fixBabelImports('import', {
+     libraryName: 'antd',
+     libraryDirectory: 'es',
+     style: 'css',
+   }),
+ );
+
+ Remove the @import '~antd/dist/antd.css'
