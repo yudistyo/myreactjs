@@ -2,12 +2,13 @@ import React from 'react';
 function Gallery () {
     return (
      <div>
-         <iframe width="100%" height="100%" src="https://www.google.com/search?q=yudis&safe=strict&tbm=isch&prmd=vimn&sxsrf=ALeKk02XX9DPnG_CazAo4JqRa-3_ikWHWg:1586168641997&source=lnms&sa=X&ved=0ahUKEwjY0tbTytPoAhVt63MBHeoTCWIQ_AUIEygC&biw=360&bih=560&dpr=1.5">
-
-         </iframe>
+         
+         <iframe width="100%" height="400" allowfullscreen frameborder="0" src="https://www.google.com/webhp?igu=1" ></iframe>
      </div>
     );
   }
 
 
 export default Gallery;
+{/* <iframe width="100%" height="400" src="https://www.google.com/webhp?igu=1"></iframe> */}
+{/* <iframe id="if1" width="100%" height="254" style="visibility:visible" src="https://www.google.com/webhp?igu=1"></iframe> */}
