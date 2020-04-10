@@ -1,9 +1,9 @@
 import { Layout, Menu, Breadcrumb } from 'antd';
-import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
+import { UserOutlined, LaptopOutlined} from '@ant-design/icons';
 import React from 'react';
 import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
-import App2 from './App2'
-import AppNew from './AppNew'
+//import App2 from './App2'
+//import AppNew from './AppNew'
 import Youtube from './Youtube'
 import Description from './Description'
 import Project from './Project'
@@ -15,6 +15,7 @@ const { Header, Content, Sider } = Layout;
 
 function Dashboard(){
 return(
+  <BrowserRouter>
   <Layout>
     <Header className="header" style={{}}>
       <div className="logo" />
@@ -34,7 +35,7 @@ return(
         >
         <Menu theme="dark">
         <div style={{textAlign:'center', color:'white',marginTop:20,fontWeight:'bold'}}>React JS</div>
-            <img style={{}} src={require('./logo.svg')}></img>            
+            <img style={{}} alt='Logo' src={require('./logo.svg')}></img>            
         </Menu>
           <SubMenu
             key="sub1"
@@ -106,6 +107,7 @@ return(
     </Layout>
         
   </Layout>
+  </BrowserRouter>
 )
 };
 

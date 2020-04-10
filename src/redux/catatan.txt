@@ -1,0 +1,106 @@
+
+//dasar redux..
+
+const InitState={
+    PopUp:''
+}
+
+const reducer=(state=InitState,action)=>{
+    if(action.type==='changePopUptype'){
+    return{
+    ...state,
+    PopUp:'diganti'
+            }   
+    }
+    return state;
+}
+const store = createStore(store,reducer)
+
+
+<Provider store={sore}/>
+
+
+
+//pemanggilan
+
+ class App3 extends React.Component { 
+  };
+  render() {
+    return (
+      <Menu onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">       
+      </Menu>
+    );
+  }
+}
+const reduxState=(state)=>{
+  return(
+    {
+      PopupProps:state.PopUp
+    }    
+  )  
+}
+export default connect(reduxState,null)(App3);
+
+
+
+//dispatch
+
+const reduxState=(state)=>{
+  return(
+    {
+      PopupProps:state.PopUp
+    }    
+  )  
+}
+
+const reduxDispatch=(dispatch)=>({
+ ChangeDispatch:()=>dispatch({type:'Change_Action_PopUp',value : ' diubah'})
+})
+
+export default connect(reduxState,reduxDispatch)(App3);
+
+
+//async tes redux
+const reduxDispatch=(dispatch)=>({
+ ChangeDispatch:()=>dispatch(changetype())
+})
+
+const changetype=()=>{
+  return{
+    type:'Change_Action_PopUp',value : ' diubah'
+  }
+}
+export default connect(reduxState,reduxDispatch)(App3);
+
+//perubahan aync jalan ok
+const reduxDispatch = dispatch => ({
+  ChangeDispatch: () => dispatch(changetype())
+});
+
+const changetype = () => {
+  return(cxx)=>{
+    setTimeout(() => {
+      return cxx({
+        type: "Change_Action_PopUp",
+        value: " diubah"
+      });
+    }, 2000);
+  }
+  
+};
+
+//final  async
+const reduxDispatch = dispatch => ({
+  ChangeDispatch: () => dispatch(changetype())
+});
+
+const changetype = () =>(cxx)=> {
+    setTimeout(() => {
+      return cxx({
+        type: "Change_Action_PopUp",
+        value: " diubah"
+      });
+    }, 2000);
+  
+};
+export default connect(reduxState,reduxDispatch)(App3);

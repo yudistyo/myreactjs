@@ -1,30 +1,37 @@
-import { Menu } from 'antd';
-import React,{Component,useState} from 'react';
+import { Menu } from "antd";
+import React, { Component, useState } from "react";
 import {
   MailOutlined,
   AppstoreOutlined,
-  SettingOutlined,
-} from '@ant-design/icons';
+  SettingOutlined
+} from "@ant-design/icons";
+import { connect } from "react-redux";
+import { dispatch } from "C:/Users/Nandar Nawadata/AppData/Local/Microsoft/TypeScript/3.1/node_modules/rxjs/internal/observable/pairs";
 
 const { SubMenu } = Menu;
- class App3 extends React.Component {
+class App3 extends React.Component {
   state = {
-    current: 'mail',
+    current: "mail"
   };
 
   handleClick = e => {
-    console.log('click ', e);
+    this.props.ChangeDispatch();
+    console.log("click ", e);
     this.setState({
-      current: e.key,
+      current: e.key
     });
   };
 
   render() {
     return (
-      <Menu onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
+      <Menu
+        onClick={this.handleClick}
+        selectedKeys={[this.state.current]}
+        mode="horizontal"
+      >
         <Menu.Item key="mail">
           <MailOutlined />
-          Navigation One
+          Navigation One{this.props.PopupProps}
         </Menu.Item>
         <Menu.Item key="app" disabled>
           <AppstoreOutlined />
@@ -44,11 +51,15 @@ const { SubMenu } = Menu;
           </Menu.ItemGroup>
           <Menu.ItemGroup title="Item 2">
             <Menu.Item key="setting:3">Option 3</Menu.Item>
-            <Menu.Item key="setting:4">Option 4</Menu.Item>
+            <Menu.Item key="setting:4">{this.props.PopupProps}</Menu.Item>
           </Menu.ItemGroup>
         </SubMenu>
         <Menu.Item key="alipay">
-          <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://ant.design"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Navigation Four - Link
           </a>
         </Menu.Item>
@@ -56,5 +67,23 @@ const { SubMenu } = Menu;
     );
   }
 }
+const reduxState = state => {
+  return {
+    PopupProps: state.PopUp
+  };
+};
 
-export default App3;
+const reduxDispatch = dispatch => ({
+  ChangeDispatch: () => dispatch(changetype())
+});
+
+const changetype = () =>(cxx)=> {
+    setTimeout(() => {
+      return cxx({
+        type: "Change_Action_PopUp",
+        value: " diubah"
+      });
+    }, 2000);
+  
+};
+export default connect(reduxState,reduxDispatch)(App3);

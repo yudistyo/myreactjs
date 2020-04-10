@@ -1,8 +1,7 @@
-import React,{Component,useState} from 'react';
+import React,{useState} from 'react';
 
 function App2() {
   const [fromUrl,setfromUrl]=useState('')
-  const [data,setdata]=useState('')
 
  const GetApi = (item, index) => {
    // this.setState({ ImgA: require('./loading.gif')});
