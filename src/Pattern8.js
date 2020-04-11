@@ -1,4 +1,4 @@
-import { Switch, Link, Route } from 'react-router-dom'
+import { Switch, Link, Route,BrowserRouter } from 'react-router-dom'
 import { Layout, Menu, Breadcrumb, Icon, Card } from 'antd';
 import {
     DesktopOutlined,
@@ -14,6 +14,8 @@ import Youtube from './Youtube'
 import Description from './Description'
 import Project from './Project'
 import Gallery from './Gallery'
+import ShowApi from './API/Show Api'
+import InsertApi from './API/Insert Api'
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -47,6 +49,7 @@ export default class SiderDemo extends React.Component {
     }
     render() {
         return (
+            <BrowserRouter>
             <Layout style={{ minHeight: '100vh', fontWeight: "bolder" }} >
                 <Sider overflow="scroll" theme="dark" collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
                     <div style={{ position: 'fixed', overflow: 'auto' }}>
@@ -112,18 +115,21 @@ export default class SiderDemo extends React.Component {
                     <Content style={{ margin: '50px 16px' }}>
                         <Breadcrumb style={{ margin: '20px 0' }}>
                             <Breadcrumb.Item>{this.state.Breadcrumb}</Breadcrumb.Item>
-                        </Breadcrumb>
+                        </Breadcrumb>                       
                         <Switch>
                             <Route path="/Youtube" component={Youtube} ></Route>
                             <Route path="/Lorem" component={Lorem} ></Route>
                             <Route path="/Description" component={Description} ></Route>
                             <Route path="/Project" component={Project} ></Route>
                             <Route path="/Gallery" component={Gallery} ></Route>
+                            <Route path="/Show data api" component={ShowApi} ></Route>
+                            <Route path="/Insert data api" component={InsertApi} ></Route>
                         </Switch>
                     </Content>
                     <Footer style={{ textAlign: 'center' }}>Way Design ©2020 Created by Human</Footer>
                 </Layout>
             </Layout>
+            </BrowserRouter>
         );
     }
 }

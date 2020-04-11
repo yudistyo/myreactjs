@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 //import Dashboard from "./Patter7";
 //import SiderDemo from "./Pattern8";
-//import App3 from "./App3";
+//import App3 from './API/Show Api';
 //import Register2 from './Page/Register2';
 import firebase from "./Firebase/Firebase";
 //import Login from "./Page/Login";
@@ -24,6 +24,7 @@ function App() {
         <Redirect to='/Login'></Redirect>
          </Provider>
       </BrowserRouter>
+      
     
       )
   

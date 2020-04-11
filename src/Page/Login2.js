@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Form, Input, Button, Checkbox } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
-import Dashboard from "../Patter7";
+import Dashboard from "../../src/Pattern8";
 
 import {
   BrowserRouter,
@@ -25,7 +25,7 @@ class Login2 extends Component {
   };
 
   HandleLoginSucces = () => {
-    console.log("LoginSucces");
+    //console.log("LoginSucces");
     this.setState({
       LoginSucces: true
     });
