@@ -76,8 +76,8 @@ OkDeleteBtn=()=>{
         Allow: "*",
         "Content-Type": "application/json"
       };
-    console.log("Pre-fetch check",`http://localhost/api/c/${this.state.CustID}`);
-    Axios.delete(`http://localhost/api/c/${this.state.CustID}`,paramdata, {
+    //console.log("Pre-fetch check",`http://localhost/api/c/${this.state.CustID}`);
+    Axios.delete(`http://www.cv.somee.com/c/${this.state.CustID}`,paramdata, {
         headers,
         mode: "no-cors"
       }).then(res => {

@@ -39,7 +39,7 @@ class componentName extends Component {
       "Content-Type": "application/json"
     };
     console.log("Pre-fetch check==>");
-    Axios.post("http://localhost/api/c", paramdata, {
+    Axios.post("http://www.cv.somee.com/c", paramdata, {
       headers,
       mode: "no-cors"
     }).then(res => {

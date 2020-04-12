@@ -16,7 +16,7 @@ class componentName extends Component {
     }
     GetApi=()=>{
         console.log('Pre-fetch check');
-        Axios.get('http://localhost/api/c')
+        Axios.get('http://www.cv.somee.com/c')
         .then(res=>{
             console.log('res data==>',res.data)
             this.setState({
