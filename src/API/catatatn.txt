@@ -1,0 +1,59 @@
+cors 
+aktifkan cors di server 
+misal pakai webcore
+instal microsoft....cors
+ public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddCors(options => options.AddPolicy("ApiCorsPolicy", builder =>//tambahkan
+            {
+                builder.WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyHeader();
+            }));
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddDbContext<BankExampleContext>(options=>options.UseSqlServer(Configuration.GetConnectionString("BloggingDatabase")));
+        }
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                //               app.UseCors(
+                //    options => options.WithOrigins("http://localhost/api/c").AllowAnyMethod()
+                //);
+                app.UseCors("ApiCorsPolicy");//tambahkan
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+            }
+
+ // Shows UseCors with CorsPolicyBuilder.
+    app.UseCors(builder =>//tambahkan
+                        {
+                            builder
+                            .AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader();
+                        });
+
+            app.UseStaticFiles();
+            app.UseCookiePolicy();
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+            });
+        }
+    }
