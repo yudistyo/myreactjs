@@ -3,6 +3,7 @@ import Axios from "axios";
 import { Table, Input, Button, Icon, Modal } from "antd";
 import { Switch, Link, Route, BrowserRouter, Redirect } from "react-router-dom";
 import ShowApi from "../Show Api";
+import {urlOffline, urlOnline} from '../../API'
 
 class componentName extends Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class componentName extends Component {
       "Content-Type": "application/json"
     };
     console.log("Pre-fetch check==>");
-    Axios.post("https://jsonplaceholder.typicode.com/comments", paramdata, {
+    Axios.post(urlOnline, paramdata, {
       headers,
       mode: "no-cors"
     })

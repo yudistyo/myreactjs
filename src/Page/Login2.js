@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Form, Input, Button, Checkbox } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import Dashboard from "../../src/Pattern8";
-
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
 import Register2 from "./Register2";
 
@@ -188,11 +187,11 @@ class Login2 extends Component {
                     </Button>
                   </Form.Item>
                 </Form>
-                <Button onClick={()=>{
+                {/* <Button onClick={()=>{
                   const {history}=this.props;
                   history.push('/Tes')
 
-                }}>tes </Button>
+                }}>tes </Button> */}
               </div>
             </div>
           </BrowserRouter>

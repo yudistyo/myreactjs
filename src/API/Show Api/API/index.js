@@ -3,7 +3,7 @@
 function Get(){
     let response=''
     const GetApi = (item, index) => {
-         fetch(` http://localhost/api/c`)
+         fetch(`http://localhost/api/c`)
      
            .then((response) => response.json()
      

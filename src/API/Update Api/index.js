@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import Axios from "axios";
 import { Table, Input, Button, Icon, Modal } from "antd";
-import MOdalUpdate from './Modal'
+import {urlOffline, urlOnline} from '../../API'
 
 class componentName extends Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class componentName extends Component {
   };
   GetApi = () => {
     console.log("Pre-fetch check");
-    Axios.get("https://jsonplaceholder.typicode.com/comments").then(res => {
+    Axios.get(urlOnline).then(res => {
       console.log("res data==>", res.data);
       this.setState({
         Data: res.data
@@ -93,7 +93,7 @@ class componentName extends Component {
         "Content-Type": "application/json"
       };
     //console.log("Pre-fetch check",`http://localhost/api/c/${this.state.id}`);
-    Axios.put(`https://jsonplaceholder.typicode.com/comments/${this.state.id}`,paramdata, {
+    Axios.put(`${urlOnline}/${this.state.id}`,paramdata, {
         headers,
         mode: "no-cors"
       }).then(res => {

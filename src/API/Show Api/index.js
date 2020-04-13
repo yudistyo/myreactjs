@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Get from './API'
 import Axios from 'axios'
 import { Table, Input, Button, Icon,Modal } from 'antd';
-
+import {connect} from 'react-redux'
+import {urlOffline, urlOnline} from '../../API'
 class componentName extends Component {
   constructor(props) {
     super(props);
@@ -16,7 +17,7 @@ class componentName extends Component {
     }
     GetApi=()=>{
         console.log('Pre-fetch check');
-        Axios.get('https://jsonplaceholder.typicode.com/comments')
+        Axios.get(urlOnline)
         .then(res=>{
             console.log('res data==>',res.data)
             this.setState({
@@ -153,8 +154,10 @@ onSearch = () => {
   }
 }
 
+const reduxState=(state)=>({
+  propsIsinternet:state.IsInternet
+})
 
-
-export default componentName;
+export default connect(reduxState,null)(componentName);
 
 

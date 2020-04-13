@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Axios from 'axios'
 import { Table, Input, Button, Icon,Modal } from 'antd';
+import {urlOffline, urlOnline} from '../../API'
 
 class componentName extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class componentName extends Component {
     }
     GetApi=()=>{
         console.log('Pre-fetch check');
-        Axios.get('https://jsonplaceholder.typicode.com/comments')
+        Axios.get(urlOnline)
         .then(res=>{
             console.log('res data==>',res.data)
             this.setState({
@@ -70,7 +71,7 @@ OkDeleteBtn=()=>{
         "Content-Type": "application/json"
       };
     //console.log("Pre-fetch check",`http://localhost/api/c/${this.state.id}`);
-    Axios.delete(`https://jsonplaceholder.typicode.com/comments/${this.state.id}`,paramdata, {
+    Axios.delete(`${urlOnline}/${this.state.id}`,paramdata, {
         headers,
         mode: "no-cors"
       }).then(res => {
