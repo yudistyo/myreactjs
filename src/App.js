@@ -10,6 +10,7 @@ import { BrowserRouter, Route,Redirect } from "react-router-dom";
 import { Provider } from "react-redux";
 import {store} from './redux'
 import Login2 from './Page/Login2';
+import Tes from './Tes'
 
 
 
@@ -21,6 +22,7 @@ function App() {
         <BrowserRouter >
         <Provider store={store}>
         <Route path='/Login' component={Login2}></Route>
+        <Route path='/Tes' component={Tes}></Route>
         <Redirect to='/Login'></Redirect>
          </Provider>
       </BrowserRouter>

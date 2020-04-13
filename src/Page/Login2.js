@@ -188,6 +188,11 @@ class Login2 extends Component {
                     </Button>
                   </Form.Item>
                 </Form>
+                <Button onClick={()=>{
+                  const {history}=this.props;
+                  history.push('/Tes')
+
+                }}>tes </Button>
               </div>
             </div>
           </BrowserRouter>

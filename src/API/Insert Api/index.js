@@ -2,33 +2,27 @@ import React, { Component } from "react";
 import Axios from "axios";
 import { Table, Input, Button, Icon, Modal } from "antd";
 import { Switch, Link, Route, BrowserRouter, Redirect } from "react-router-dom";
-import ShowApi from '../Show Api'
+import ShowApi from "../Show Api";
 
 class componentName extends Component {
   constructor(props) {
     super(props);
     this.state = {
       visible: true,
-      Address: "",
-      City: "",
+      name: "",
+      email: "",
       ReturnAction: false
     };
   }
   componentDidMount = () => {};
 
-  PostApi = (address, city) => {
-    //console.log('Address api: ',this.state.Address,' City : ',this.state.City)
+  PostApi = (name, email) => {
+    //console.log('name api: ',this.state.name,' email : ',this.state.email)
     const paramdata = {
-      address: city,
-      city: address,
-      custTypeCd: "",
-      fedId: "",
-      postalCode: "",
-      state: "React",
-      business: null,
-      individual: null,
-      account: [],
-      officer: []
+      name: name,
+      email: email,
+      body:
+        "react cvnet netlify com"
     };
     const headers = {
       "Access-Control-Allow-Origin": "*",
@@ -39,33 +33,34 @@ class componentName extends Component {
       "Content-Type": "application/json"
     };
     console.log("Pre-fetch check==>");
-    Axios.post("http://www.cv.somee.com/c", paramdata, {
+    Axios.post("https://jsonplaceholder.typicode.com/comments", paramdata, {
       headers,
       mode: "no-cors"
-    }).then(res => {
-      //console.log("res data==>", res, paramdata, headers);
-      if(res.status===201){
-        this.setState({
-          ReturnAction:true
-        })
-      }
     })
-    .catch((error)=>{
-      console.log("res error==>", error, paramdata, headers);
-    })
+      .then(res => {
+        //console.log("res data==>", res, paramdata, headers);
+        if (res.status === 201) {
+          this.setState({
+            ReturnAction: true
+          });
+        }
+      })
+      .catch(error => {
+        console.log("res error==>", error, paramdata, headers);
+      });
   };
 
   OnchangeText = e => {
     this.setState({ [e.target.placeholder]: e.target.value });
-    //console.log('Address 1 : ',this.state.Address,' City : ',this.state.City);
+    //console.log('name 1 : ',this.state.name,' email : ',this.state.email);
   };
   HandleOnOkModal = () => {
-    if (this.state.Address !== "" && this.state.City !== "") {
-      this.PostApi(this.state.Address, this.state.City);
+    if (this.state.name !== "" && this.state.email !== "") {
+      this.PostApi(this.state.name, this.state.email);
     }
   };
   HandleOnCancelModal = () => {
-    this.setState({ visible: false, ReturnAction:true});
+    this.setState({ visible: false, ReturnAction: true });
   };
 
   render() {
@@ -74,12 +69,14 @@ class componentName extends Component {
         <div>
           <Route path="/Show data api" component={ShowApi}></Route>
           <Redirect to="/Show data api"></Redirect>
-          </div>
+        </div>
       );
     } else {
       return (
         <div style={{ position: "fixed" }}>
-          <Modal okText='Insert data' confirmLoading={this.state.City=== '' ? true:false}
+          <Modal
+            okText="Insert data"
+            confirmLoading={this.state.email === "" ? true : false}
             style={{ fontWeight: "bolder" }}
             title="Data Insert"
             visible={this.state.visible}
@@ -91,12 +88,12 @@ class componentName extends Component {
                 <Input
                   onChange={this.OnchangeText}
                   style={{ marginBottom: 20, padding: 10, borderRadius: 10 }}
-                  placeholder="Address"
+                  placeholder="name"
                 ></Input>
                 <Input
                   onChange={this.OnchangeText}
                   style={{ marginBottom: 20, padding: 10, borderRadius: 10 }}
-                  placeholder="City"
+                  placeholder="email"
                 ></Input>
               </div>
             }

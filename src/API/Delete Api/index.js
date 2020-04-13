@@ -7,7 +7,7 @@ class componentName extends Component {
     super(props);
     this.state = {
       Data: [],selectedRowKeys: [],searchText:'',filtered: false,visible:false,
-      RowData:[],CustID:''
+      RowData:[],id:''
     };
   }
     componentDidMount=()=>{
@@ -15,7 +15,7 @@ class componentName extends Component {
     }
     GetApi=()=>{
         console.log('Pre-fetch check');
-        Axios.get('http://www.cv.somee.com/c')
+        Axios.get('https://jsonplaceholder.typicode.com/comments')
         .then(res=>{
             console.log('res data==>',res.data)
             this.setState({
@@ -36,7 +36,7 @@ onSearch = () => {
     filterDropdownVisible: false,
     filtered: !!searchText,
     Data: this.state.Data.map((record) => {
-      const match = record.address.match(reg);
+      const match = record.name.match(reg);
       console.log('Data;==>',this.state.Data,'match==>',match)
       if (!match) {
         return null;
@@ -45,7 +45,7 @@ onSearch = () => {
         ...record,
         name: (
           <span>
-            {record.address.split(reg).map((text, i) => (
+            {record.name.split(reg).map((text, i) => (
               i > 0 ? [<span className="highlight">{match[0]}</span>, text] : text
             ))}
           </span>
@@ -56,17 +56,10 @@ onSearch = () => {
 }
 OkDeleteBtn=()=>{
     const paramdata = {
-        custId:this.state.CustID,
-        address: this.state.input1,
-        city: this.state.input2,
-        custTypeCd: "",
-        fedId: "",
-        postalCode: "",
-        state: "React",
-        business: null,
-        individual: null,
-        account: [],
-        officer: []
+        id:this.state.id,
+        name: this.state.input1,
+        email: this.state.input2,
+        body: "react cvnet netlify com"
       };
       const headers = {
         "Access-Control-Allow-Origin": "*",
@@ -76,8 +69,8 @@ OkDeleteBtn=()=>{
         Allow: "*",
         "Content-Type": "application/json"
       };
-    //console.log("Pre-fetch check",`http://localhost/api/c/${this.state.CustID}`);
-    Axios.delete(`http://www.cv.somee.com/c/${this.state.CustID}`,paramdata, {
+    //console.log("Pre-fetch check",`http://localhost/api/c/${this.state.id}`);
+    Axios.delete(`https://jsonplaceholder.typicode.com/comments/${this.state.id}`,paramdata, {
         headers,
         mode: "no-cors"
       }).then(res => {
@@ -96,12 +89,12 @@ OkDeleteBtn=()=>{
   }
 
   render() {
-    //console.log('tes==>',this.state.Data.filter((value,index,self)=>self.map(x=>x.city).indexOf(value.city)==index))
-    const dataCity=this.state.Data.filter((value,index,self)=>self.map(x=>x.city).indexOf(value.city)==index)
+    //console.log('tes==>',this.state.Data.filter((value,index,self)=>self.map(x=>x.email).indexOf(value.email)==index))
+    const dataCity=this.state.Data.filter((value,index,self)=>self.map(x=>x.email).indexOf(value.email)==index)
     const columns = [{
       title: 'ID',
-      dataIndex: 'custId',
-      key: 'custId',
+      dataIndex: 'id',
+      key: 'id',
       render: text => <div style={{backgroundColor:'lightgrey',textAlign:'center'}}>{text}</div>
       ,
       
@@ -119,26 +112,26 @@ OkDeleteBtn=()=>{
     )
      },
     {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'Address',
+    title: 'name',
+    dataIndex: 'name',
+    key: 'name',
     
     filters:
     dataCity.map((d,i)=>{
         
         return ({
-          text:d.city,
-          value:d.city,
+          text:d.email,
+          value:d.email,
         }
         )
     })
     ,
-    onFilter: (value, record) => record.city.indexOf(value) === 0,
+    onFilter: (value, record) => record.email.indexOf(value) === 0,
   },
   {
-    title: 'City',
-    dataIndex: 'city',
-    key: 'city',
+    title: 'email',
+    dataIndex: 'email',
+    key: 'email',
   },
    {
     title: 'Action',
@@ -150,9 +143,9 @@ OkDeleteBtn=()=>{
                 visible:true
           });
           this.setState({
-            RowData:['ID : '+record.custId,'Address : '+record.address,'City : '+record.city],CustID:record.custId
+            RowData:['ID : '+record.id,'name : '+record.name,'email : '+record.email],id:record.id
       });
-        }} type="primary">Delete - ID: {record.custId}</Button>
+        }} type="primary">Delete - ID: {record.id}</Button>
       
       </span>
     ),
@@ -163,13 +156,13 @@ OkDeleteBtn=()=>{
   const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
       this.state.Data.map((d,i)=>{
-        selectedRowKeys=d.custId;
+        selectedRowKeys=d.id;
         selectedRows=d
       }) 
       console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
     },
     // getCheckboxProps: record => ({      
-    //   disabled: record.custId === '1', // Column configuration not to be checked
+    //   disabled: record.id === '1', // Column configuration not to be checked
     // }),
   };
       
